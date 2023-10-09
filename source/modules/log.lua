@@ -14,7 +14,7 @@ local log = {
 	color = true,
 	date_format = "%H:%M:%S",
 	level = "debug",
-	file = assert(love.filesystem.newFile(LOG_FILE, "a"))
+	file = assert(love.filesystem.openFile(LOG_FILE, "a"))
 }
 
 function log.setColor(b)

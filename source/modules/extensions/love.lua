@@ -10,22 +10,24 @@ local getBackgroundColor = graphics.getBackgroundColor
 -- Allow 0-255 values again..
 function graphics.clear(r,g,b,a,...)
 	if type(r) == "table" then
-		r, g, b, a = r.r, r.g, r.b, r.a
+		r, g, b, a = r.r or 0, r.g or 0, r.b or 0, r.a or 0
 	else
-		r, g, b, a = r or 255, g or 255, b or 255, a or 255
+		r, g, b, a = tonumber(r) or 0, tonumber(g) or 0, tonumber(b) or 0, tonumber(a) or 0
 	end
-	clear(r/255,g/255,b/255,a/255,...)
+	r, g, b, a = r/255, g/255, b/255, a/255
+	clear(r,g,b,a,...)
 end
 
 -- Love2D changed color values to be 0-1
 -- Allow 0-255 values again..
 function graphics.setColor(r,g,b,a)
 	if type(r) == "table" then
-		r, g, b, a = r.r, r.g, r.b, r.a
+		r, g, b, a = r.r or 0, r.g or 0, r.b or 0, r.a or 0
 	else
-		r, g, b, a = r or 255, g or 255, b or 255, a or 255
+		r, g, b, a = tonumber(r) or 0, tonumber(g) or 0, tonumber(b) or 0, tonumber(a) or 0
 	end
-	setColor(r/255,g/255,b/255,a/255)
+	r, g, b, a = r/255, g/255, b/255, a/255
+	setColor(r, g, b, a)
 end
 
 function graphics.getColor()
@@ -37,11 +39,12 @@ end
 -- Allow 0-255 values again..
 function graphics.setBackgroundColor(r,g,b,a)
 	if type(r) == "table" then
-		r, g, b, a = r.r, r.g, r.b, r.a
+		r, g, b, a = r.r or 0, r.g or 0, r.b or 0, r.a or 0
 	else
-		r, g, b, a = r or 255, g or 255, b or 255, a or 255
+		r, g, b, a = tonumber(r) or 0, tonumber(g) or 0, tonumber(b) or 0, tonumber(a) or 0
 	end
-	setBackgroundColor(r/255,g/255,b/255,a/255)
+	r, g, b, a = r/255, g/255, b/255, a/255
+	setBackgroundColor(r,g,b,a)
 end
 
 function graphics.getBackgroundColor()
@@ -68,7 +71,7 @@ function graphics.easyDraw(obj, x, y, rotation, width, height, originX, originY,
 	graphics.draw(obj, x, y, rotation, scaledW, scaledH, objW * originX, objH * originY, ...)
 end
 
---applies a transformation that maps 
+--applies a transformation that maps
 --  0,0 => ox, oy
 --  1,0 => xx, xy
 --  0,1 => yx, yy
@@ -153,7 +156,7 @@ function graphics.roundRect(x, y, width, height, radius)
 	graphics.rectangle("fill", x + radius, y, width-2*radius, height )
 	graphics.rectangle("fill", x, y + radius, radius, height - (radius * 2))
 	graphics.rectangle("fill", x + (width - radius), y + radius, radius, height - (radius * 2))
-	
+
 	--ARCS
 	graphics.arc("fill", x + radius, y + radius, radius, math.rad(-180), math.rad(-90))
 	graphics.arc("fill", x + width - radius , y + radius, radius, math.rad(-90), math.rad(0))

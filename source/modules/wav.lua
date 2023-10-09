@@ -95,7 +95,7 @@ local function newChunkSmpl(f, chunk)
 end
 
 function wav.parse(file)
-	local f = assert(love.filesystem.newFile(file, "r"))
+	local f = assert(love.filesystem.openFile(file, "r"))
 
 	local parsed = {
 		points = {},

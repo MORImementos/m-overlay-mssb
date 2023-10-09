@@ -307,7 +307,7 @@ function SKIN:Paint(controller)
 			perspective.quad(BUTTON_TEXTURES.JOYSTICK.MASK, rotated[1], rotated[2], rotated[3], rotated[4])
 			perspective.off()
 		end, "replace", 1)
-		graphics.setStencilTest("equal", 0) -- Mask out the gate behind the joystick
+		graphics.setStencilTest("equal", 255) -- Mask out the gate behind the joystick
 			graphics.easyDraw(BUTTON_TEXTURES.JOYSTICK.GATE, 22, 52, 0, 128, 128)
 		graphics.setStencilTest()
 	end

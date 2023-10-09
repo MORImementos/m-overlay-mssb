@@ -520,7 +520,7 @@ function music.loadProbablitities()
 
 	local probFile = music.PROBABILITY_FILE
 
-	local f = love.filesystem.newFile(probFile, "r")
+	local f = love.filesystem.openFile(probFile, "r")
 	if f then
 		local settings = music.PROBABILITY_SETTINGS
 		local success, decoded = pcall(json.decode, f:read())

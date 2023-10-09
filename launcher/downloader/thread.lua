@@ -13,7 +13,7 @@ local function love_file_sink(filename)
 		if not dir_ok then error("could not create directory "..dirname) end
 	end
 
-	local file = love.filesystem.newFile(filename)
+	local file = love.filesystem.openFile(filename)
 	local ok, err = file:open("w")
 	if not ok then error(err) end
 

@@ -645,7 +645,7 @@ function PANEL:NeedsWrite()
 end
 
 function PANEL:SaveSettings()
-	local f, err = filesystem.newFile(self.m_sFileName, "w")
+	local f, err = filesystem.openFile(self.m_sFileName, "w")
 	if f then
 		log.warn("Writing to %s", self.m_sFileName)
 		notification.warning("Writing to %s", self.m_sFileName)
@@ -667,7 +667,7 @@ end
 function PANEL:LoadSettings()
 	local settings = self:GetSaveTable()
 
-	local f = filesystem.newFile(self.m_sFileName, "r")
+	local f = filesystem.openFile(self.m_sFileName, "r")
 	if f then
 		local success, decoded = pcall(json.decode, f:read())
 		f:close()
